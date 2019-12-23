@@ -1,8 +1,20 @@
 package com.bridgelabz.fellowship.utility;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * @author admin1
+ *
+ */
+/**
+ * @author admin1
+ *
+ */
 public class Utility {
 	static Scanner sc=new Scanner(System.in);
 	
@@ -26,6 +38,10 @@ public class Utility {
 	{
 		return sc.nextLine();
 	}
+	/************************ Add_First_And_Last_Digit **************************************/
+	/**
+	 * @param num				user enter the number
+	 */
 	public static void additionFirstAndLastDigit(int num)
 	{
 		int temp=0,sum=0;
@@ -179,7 +195,7 @@ while(low<high) {
 			}
 		}
 	}
-	public static void powerOfTwo(int num)
+	public static double powerOfTwo(int num)
 	{
 		double power=0;
 		int i;
@@ -190,8 +206,10 @@ while(low<high) {
 				power=Math.pow(2, i);
 			}
 			
-			System.out.println("The power of 2 upto "+(i-1)+" is "+power);
+			//System.out.println("The power of 2 upto "+(i-1)+" is "+power);
+			
 		}
+		return power;
 	}
 	public static void harmonicNumber(int number)
 	{
@@ -352,6 +370,9 @@ while(low<high) {
 	}
 	//Done stopwatch
 
+	/**
+	 * @param rupees       		user enter the rupees
+	 */
 	public static void vendingMachine(int rupees)
 	{
 		int arr[]= {2000,500,200,100,50,20,10,5,2,1};
@@ -374,6 +395,11 @@ while(low<high) {
 		int d0=(date+x+31*m0/12)%7;
 		return d0;
 	}
+	/*************************** Temperature_Conversion ************************************/
+	/**
+	 * @param celsius				user enter the temperature in celsius 
+	 * @param fahrenheit			user enter the temperature in fahrenheit
+	 */
 	public static void temperatureConversion(float celsius, float fahrenheit)
 	{
 		fahrenheit=(celsius*9/5)+32;
@@ -381,8 +407,392 @@ while(low<high) {
 		celsius=(fahrenheit-32)*9/5;
 		System.out.println("Temperature in Celsius is: "+celsius);
 	}
-	public static void monthlyPayment()
+	/*************************** Monthly_Payment *************************************/
+	/**
+	 * @param principal_amount 		user enter the principal amount
+	 * @param year					user enter the year	
+	 * @param interest				user enter the interest
+	 */
+	public static void monthlyPayment(double principal_amount, double year, double interest)
+	{
+		double n,r;
+		n=12*year;
+		r=interest/(12*100);
+		System.out.println("Now calculate the payment!!");
+		double payment;
+		payment=(principal_amount*r)/(1-Math.pow((1+r), (-n)));
+		System.out.println("The Payment is: "+payment);
+	}
+	/*************************** Decimal_TO_Binary ***********************************/
+	/**
+	 * @param decimal				user enter the decimal number 
+	 */
+	public static void toBinary(int decimal)
+	{
+		//int binary =0;
+		int binary[]=new int[100];
+		int j=0;
+		while(decimal!=0) 
+		{
+			binary[j++]=decimal%2;
+			decimal=decimal/2;
+		}
+		for(int i=j-1;i>=0;i--)
+		{
+			System.out.print(binary[i]);
+		}
+	}
+	
+	/***********************Binary.java****************************************/
+	/**
+	 * @param number				user enter the decimal number 
+	 * @return						it return the value after swap
+	 */
+	public static int swapNibbles(int number)
+	{
+		int swap=((number & 0x0F)<<4 | (number & 0xF0)>>4);
+		return swap;
+	}
+	/**
+	 * @param number				user enter the decimal number
+	 * @return						it returns the boolean value i.e. true
+	 */
+	public static boolean powerOf(int number)
+	{
+		double power=0;
+		int i;
+		boolean flag=false;
+		if(number<32)
+		{
+			for(i=0;i<=number;i++)
+			{
+				power=Math.pow(2, i);
+			}
+		}
+		return true;
+		
+	}
+
+	public static double newtonSqrt(double number, double epsilon)
+	{
+		double temp=number;
+		while(Math.abs(temp-number/temp)>epsilon*temp)
+		{
+			temp=(number/temp+temp)/2.0;
+		}
+		//System.out.println("The output is: "+temp);
+		return temp;
+	}
+	/**********************Bubble_Sort*****************************************/
+	public static void bubbleSort(int arr[]) 
+	{
+		int i=0,j=0;
+		for ( i = 0; i <=arr.length - 1; i++) 
+		{
+			for (j = i+1; j <=arr.length - 1; j++) 
+			{
+				if (arr[i] > arr[j]) 
+				{
+					int temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+			System.out.println(arr[i]);
+		}
+		
+	}
+	/***********************Detection_Of_Anagram*****************************************/
+
+	public static void anagram(String string1, String string2)
+	{
+		int i=0,j=0;
+		int found=0,not_found=0;
+		if(string1.length()!=string2.length())
+		{
+			System.out.println("Enter the proper string!!");
+		}
+		for(i=0;i<string1.length();i++)
+		{
+			found=0;
+			for(j=0;j<string2.length();j++)
+			{
+				if(string1.charAt(i)==string2.charAt(j))
+				{
+					found=1;
+					break;
+				}
+			}
+			if(found==0)
+			{
+				not_found=1;
+				break;
+			}
+		}
+		if(not_found==0)
+		{
+			System.out.println("Strings are anagram!!");
+		}
+		else
+			System.out.println("Strings are not anagram!!");
+	}
+	
+	/*********************** Binary_Search ******************************************/
+	public static String[] fileReader() throws Exception
+	{
+		String[] str=new String[5];
+		FileReader fr=new FileReader("/home/admin1/Desktop/FellowshipSP/filereader.txt");
+		BufferedReader br=new BufferedReader(fr);
+		String data;
+		String lines[]=br.readLine().split(",");
+			for (String string : lines) {
+				System.out.println(string);
+			}
+			//System.out.println(str[j-1]);
+		
+		return lines;
+		//System.out.println(str);
+	}
+	public static String binarySearch(String arr[], String search)
+	{
+		int left=0,right=arr.length-1,result=0;
+		while(left<=right)
+		{
+			int mid=(left+(right-left))/2;
+			result=search.compareTo(arr[mid]);
+			if(result==0)
+				System.out.println(mid);
+			else if(result>0)
+				left=mid+1;
+			else
+				right=mid-1;
+		}
+		return arr[result];
+		
+	}
+	/******************** Prime_Numbers **************************/
+	public static void primeNumbers(int LastNumber)
+	{
+		int i=0;
+		for(i=2;i<LastNumber;i++)
+		{
+			int counter=0; 
+			for(int j=i;j>=1;j--)
+			{
+				if(i%j==0)
+				{
+					counter++;
+				}
+			}
+			if(counter==2)
+			{
+				System.out.print(i+" ");
+			}
+		}
+	}
+	
+	/********************PrimeAnagram_And_PrimePalindrome**********************************************/
+	public static ArrayList<Integer> primeNumber(int number)
+	{
+		ArrayList<Integer> al=new ArrayList<Integer>();
+		int i=0;
+		for(i=2;i<number;i++)
+		{
+			int counter=0; 
+			for(int j=i;j>=1;j--)
+			{
+				if(i%j==0)
+				{
+					counter++;
+				}
+			}
+			if(counter==2)
+			{
+				al.add(i);
+			}
+		}
+		return al;
+	}
+	public static boolean anagram(int m, int n)
+	{
+		int m1,n1,i,j;
+		ArrayList<Integer> t1=new ArrayList<Integer>();
+		ArrayList<Integer> t2=new ArrayList<Integer>();
+		boolean flag=false;
+		while(m!=0 || n!=0)
+		{
+			m1=m%10;
+			m=m/10;
+			t1.add(m1);
+			
+			n1=n%10;
+			n=n/10;
+			t2.add(n1);
+		}
+		Collections.sort(t1);
+		Collections.sort(t2);
+		
+		if(t1.size()==t2.size())
+		{
+			for(i=0;i<t1.size();i++)
+			{
+				if(t1.get(i)==t2.get(i))
+					flag=true;
+				else
+					return false;
+			}
+		}
+		return flag;
+	}
+	public static boolean palindrome(int s)
+	{
+		int r,temp=0,rem,sum=0;
+		ArrayList<Integer> s1=new ArrayList<Integer>();
+		boolean flag=false;
+		temp=s;
+		
+			while(s>0)
+			{
+				rem=s%10;
+				sum=(sum*10)+rem;
+				s=s/10;
+			}
+			if(temp==sum)
+			{
+				flag=true;
+			}
+			else { 
+				return false;
+			}
+			return flag;
+	}
+
+	/***********************Insertion_Sort****************************************/
+	/**
+	 * @param arr						user enter the string in array
+	 * @return							array
+	 */
+	public static String[] insertionSort(String arr[])
+	{
+		String key;
+		int i,j;
+		for(i=0;i<arr.length;i++)
+		{
+			key=arr[i];
+			j=i-1;
+			while(j>=0 && arr[j].compareTo(key)>0)
+			{
+				arr[j+1]=arr[j];
+				j=j-1;
+			}
+			arr[j+1]=key;		
+		}
+		return arr;
+	}
+	/*******************Question_To_Find_Number
+	 * @throws InterruptedException **********************************************/
+	public static int findNumber(int arr[],int low,int high) throws InterruptedException
+	{
+		Thread.sleep(2000);
+		if(low<=high) {
+		int mid=(low+high)/2;
+		System.out.println(arr[mid]+"is the number?");
+		System.out.println("If value is greater than mid press "+"g "+" otherwise press "+"l");
+		String key=Utility.stringInput();
+		if(key.equals("g"))
+		{
+			return findNumber(arr,mid+1, high);
+		}
+		else if(key.equals("l"))
+		{
+			return findNumber(arr, low, mid-1);
+		}
+		else
+		{
+			return findNumber(arr, low, high);
+		}
+		
+	}
+		return 0;
+	}
+	/*********************Merge_Sort_String**********************/
+	public static void mergeSortString(String arr[],int low,int mid,int high)
+	{
+		low=0;
+		high=arr.length;
+		mid=(low+high)/2;
+		
+		int n1=mid-low+1;
+		int n2=high-mid;
+		
+		String[] arr1=new String[n1];
+		String[] arr2=new String[n2];
+		
+		for(int i=0;i<arr1.length;i++)
+		{
+			arr1[i]=arr[low+i];
+		}
+		for(int j=0;j<arr2.length;j++)
+		{
+			arr2[j]=arr[mid+1+j];
+		}
+		int i=0,j=0;
+		int k=low;
+		while(i<n1 && j<n2)
+		{
+			if(arr1[i].compareTo(arr2[j])<0)
+			{
+				arr[k]=arr1[i];
+				i++;
+			}
+			else
+			{
+				arr[k]=arr2[j];
+				j++;
+			}
+			k++;
+		}
+	}
+	public static void sort(String arr[],int low,int high)
 	{
 		
+		if(low<high)
+		{
+			int mid=(low+high)/2;
+			Utility.sort(arr,low,mid);
+			Utility.sort(arr,mid+1,high);
+			Utility.mergeSortString(arr, low, mid, high);
+		}
+		
+	}
+	
+	/**********************************************************/
+	
+	public static void permute(String str, int left,int right)
+	{
+		char temp;
+		char chararr[]=str.toCharArray();
+		if(left==right)
+		{
+			System.out.println(str);
+		}
+		else
+		{
+			for(int i=left;i<right;i++)
+			{
+				str=swap(str, left, i);
+				permute(str, left+1, right);
+			}
+		}
+		
+	}
+	public static String swap(String str, int i, int j)
+	{
+		char temp;
+		char[] ch=str.toCharArray();
+		temp=ch[i];
+		ch[i]=ch[j];
+		ch[j]=temp;
+		return String.valueOf(ch);
 	}
 }

@@ -6,7 +6,8 @@ public class PowerOf2 {
 		int number;
 		System.out.println("enter the number: ");
 		number=Utility.integerInput();
-		Utility.powerOfTwo(number); 
+		double power=Utility.powerOfTwo(number);
+		System.out.println("Power of 2 upto "+number+" is: "+power);
 	}
 
 }
