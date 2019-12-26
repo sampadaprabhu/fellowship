@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import com.bridgelabz.fellowship.DataStructurePrograms.Stack;
+
 /**
  * @author admin1
  *
@@ -553,15 +555,19 @@ public class Utility {
 		ArrayList<Integer> t1 = new ArrayList<Integer>();
 		ArrayList<Integer> t2 = new ArrayList<Integer>();
 		boolean flag = false;
-		while (m != 0 || n != 0) {
+		while (m != 0) {
 			m1 = m % 10;
 			m = m / 10;
 			t1.add(m1);
 
+			
+		}
+		while (n != 0) {
 			n1 = n % 10;
 			n = n / 10;
 			t2.add(n1);
 		}
+		
 		Collections.sort(t1);
 		Collections.sort(t2);
 
@@ -922,5 +928,162 @@ public class Utility {
 		}
 		Utility.printListInt();
 	}
+	
+	/***********************Calender.java**************************/
+	
+	
+	public static int getDayNumber(int date, int month, int year)
+	{
+		 int y0 = year - (14 - month) / 12;
+		int x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
+		int m0 = month + 12 * ((14 - month) / 12) - 2;
+		int day = (date + x + 31 * m0 / 12) % 7;
+		return day;	
+	}
+	
+	public static boolean isLeafYear(int year)	
+	{
+		if(year%4==0 || year%100==0 || year%400==0)
+			return true;
+		else
+			return false;
+	}
+	
+	public static String[] getMonthData(int month, int year)
+	{
+		String non_leap[]= {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"};
+		
+		String leap[]={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"};
+		
+		String month_30[]={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"};
+		
+		String month_31[]={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+	
+		if(month==1||month==3||month==5||month==7||month==8||month==10||month==12)
+		{
+			return month_31;
+		}
+		else if(month==4||month==6||month==9||month==11)
+		{
+			return month_30;
+		}
+		else if(month==2 && isLeafYear(year))
+		{
+			return leap;
+		}
+		else
+		{
+			return non_leap;
+		}
+	
+	}
+	
+	/*********************Balanced_Parentheses**********************/
+	public static boolean isMatchingPair(char char1, char char2)
+	{
+		if(char1=='(' && char2==')')
+			return true;
+		else if(char1=='{' && char2=='}')
+			return true;
+		else if(char1=='[' && char2==']')
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean isParenthesesBalanced(char expression[])
+	{
+		Stack stk=new Stack();
+		for(int i=0;i<expression.length;i++)
+		{
+			if(expression[i]=='{'||expression[i]=='['||expression[i]=='(')
+			{
+				stk.push(expression[i]);
+			}
+			if(expression[i]=='}'||expression[i]==']'||expression[i]==')')
+			{
+				if(stk.isEmpty())
+				{
+					return false;
+				}
+				else if(!isMatchingPair(stk.pop(), expression[i]))
+				{
+					return false;
+				}
+			}
+		}
+		return false;
+	}
 
+	/******************Prime_And_Anagram_Array********************/
+	
+	public static int[] primeNumberArray(int number)
+	{
+		int arr[]=new int[100];
+		int i=0,k=0;
+		for (i = 2; i <number; i++) {
+			int counter = 0;
+			for (int j = i; j>=1; j--) {
+				if (i % j == 0) {
+					counter++;
+				}
+			}
+			if(counter==2)
+			{
+				arr[k]=i;
+				k++;
+			}
+		}
+		return arr;
+	}
+	public static int[] anagramArray(int arr1[])
+	{
+		int count=0;
+		int arr2[]=new int[arr1.length];
+		for(int i=0;i<arr1.length;i++)
+		{
+			for(int j=i+1;j<arr1.length;j++)
+			{
+			if(Utility.anagram(arr1[i],arr1[j])==true)
+			{
+				arr2[count]=arr1[i];
+				count++;
+				arr2[count]=arr1[j];
+				count++;
+			}
+			}
+		}
+
+		return arr2;
+	}
+	
+	public static int[] compareTo(int arr[], int arr2[])
+	{
+		int arr3[]=new int[arr.length];
+		
+		int count=0;
+		for(int i=0;i<arr.length;i++)
+		{
+			int flag=1;
+			for(int j=0;j<arr2.length;j++)
+			{
+				if(arr[i]==arr2[j])
+				{
+					flag=0;
+					break;
+				}
+				else
+					flag=1;
+				
+			}
+			if(flag==1)
+			{
+				arr3[count]=arr[i];
+				count++;
+			}
+		}
+		return arr3;
+		
+	}
+	
 }
