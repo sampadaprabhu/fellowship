@@ -1012,7 +1012,7 @@ public class Utility {
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 
 	/******************Prime_And_Anagram_Array********************/
@@ -1086,4 +1086,65 @@ public class Utility {
 		
 	}
 	
+	/**************Binary_Search_Tree*************************/
+	//BST.java
+	//BinarySearchTree.java
+	
+	/**************Banking_Cash_Counter******************/
+	
+	static int bank_amount=5000;
+	static int check;
+	static int deposit;
+	static int withdraw;
+	public static void enqueue(int users)
+	{
+		for(int i=1;i<=users;i++)
+		{
+			transaction();
+		}
+	}
+	public static void transaction()
+	{
+		System.out.println("Enter your choice:\n1.Deposit\n2.Withdraw");
+		int choice=Utility.integerInput();
+		switch(choice)
+		{
+		case 1:
+			System.out.println("Enter amount to deposit: ");
+			int amount=Utility.integerInput(); 
+			check=1;
+			dequeue(amount,check);
+			break;
+		case 2:
+			System.out.println("Enter amount to withdraw: ");
+			amount=Utility.integerInput();
+			check=0;
+			dequeue(amount,check);
+			break;
+		default: 
+			System.out.println("Enter Proper Choice!!");
+			Utility.transaction();
+		}
+	}
+
+	public static void dequeue(int amount, int check) {
+		if(check==1)
+		{
+			bank_amount=bank_amount+amount;
+			System.out.println("Amount Deposited Successfully!!");
+		}
+		else if(amount<bank_amount)
+		{
+			bank_amount=bank_amount-amount;
+			System.out.println("Amount withdraw successfully!!");
+		}
+		else
+		{
+			System.out.println("Not enough bank amount");
+		}
+		
+	}
+	
+	
+	/***************************************************************/
 }

@@ -13,7 +13,7 @@ public class BalancedParentheses {
 			System.out.println("Parentheses Balanced!!");
 		}
 		else
-			System.out.println("Parentheses Not Balanced!!");
+			System.out.println("Parentheses not Balanced!!");
 	}
 	
 
