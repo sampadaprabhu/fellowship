@@ -6,7 +6,7 @@ public class PrimeAndAnagramArray {
 
 	public static void main(String[] args) {
 		int i,j;
-		int arr4[][]=new int[2][360];
+		int arr4[][]=new int[2][1000];
 		System.out.println("Enter the range to print the prime numbers: ");
 		int range=Utility.integerInput();
 		int[] arr=Utility.primeNumberArray(range);

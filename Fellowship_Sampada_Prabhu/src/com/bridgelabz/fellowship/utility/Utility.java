@@ -1,6 +1,7 @@
 package com.bridgelabz.fellowship.utility;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
@@ -560,14 +561,13 @@ public class Utility {
 			m = m / 10;
 			t1.add(m1);
 
-			
 		}
 		while (n != 0) {
 			n1 = n % 10;
 			n = n / 10;
 			t2.add(n1);
 		}
-		
+
 		Collections.sort(t1);
 		Collections.sort(t2);
 
@@ -784,6 +784,9 @@ public class Utility {
 		Node n = head;
 		Node n1 = null;
 
+		if (index == 0)
+			head = head.next;
+
 		for (int i = 0; i < index - 1; i++) {
 			n = n.next;
 		}
@@ -851,19 +854,16 @@ public class Utility {
 	}
 
 	public static int[] fileReaderOL() throws Exception {
-
-		FileReader fr = new FileReader(
-				"/home/admin1/Desktop/FellowshipProgramsJavaAishwarya/Fellowship_Sampada_Prabhu/src/com/bridgelabz/fellowship/DataStructurePrograms/OrderList");
+		File file = new File(("/home/admin1/Desktop/UnorderedList.txt"));
+		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
-		int data;
-		String lines[] = br.readLine().split(",");
+		String lines[] = br.readLine().split(" ");
 		int[] arr = new int[lines.length];
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = Integer.parseInt(lines[i]);
 		}
 		arr = Utility.bSort(arr);
 		// System.out.println(str[j-1]);
-
 		return arr;
 		// System.out.println(str);
 	}
@@ -918,96 +918,93 @@ public class Utility {
 			temp++;
 			currentNode = currentNode.next;
 		}
-		if (temp == 0) {
-			System.out.println("Number not found!!");
-			Utility.add(search);
-
-		} else {
+		if (currentNode.data1 == search) {
 			deleteAtPosition(temp);
 			System.out.println("number found...So we have to delete it!!");
+
+		} else {
+			System.out.println("Number not found!!");
+			Utility.add(search);
 		}
 		Utility.printListInt();
 	}
-	
-	/***********************Calender.java**************************/
-	
-	
-	public static int getDayNumber(int date, int month, int year)
-	{
-		 int y0 = year - (14 - month) / 12;
+
+	public static void readWriteFile() throws FileNotFoundException {
+		Node current = head;
+		PrintWriter pw = new PrintWriter("/home/admin1/Desktop/UnOrderList.txt");
+		while (current.next != null) {
+			pw.print(current.data1);
+			pw.print(" ");
+			current = current.next;
+		}
+		pw.print(current.data1);
+		pw.flush();
+	}
+
+	/*********************** Calender.java **************************/
+
+	public static int getDayNumber(int date, int month, int year) {
+		int y0 = year - (14 - month) / 12;
 		int x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
 		int m0 = month + 12 * ((14 - month) / 12) - 2;
 		int day = (date + x + 31 * m0 / 12) % 7;
-		return day;	
+		return day;
 	}
-	
-	public static boolean isLeafYear(int year)	
-	{
-		if(year%4==0 || year%100==0 || year%400==0)
+
+	public static boolean isLeafYear(int year) {
+		if (year % 4 == 0 || year % 100 == 0 || year % 400 == 0)
 			return true;
 		else
 			return false;
 	}
-	
-	public static String[] getMonthData(int month, int year)
-	{
-		String non_leap[]= {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"};
-		
-		String leap[]={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"};
-		
-		String month_30[]={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"};
-		
-		String month_31[]={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-	
-		if(month==1||month==3||month==5||month==7||month==8||month==10||month==12)
-		{
+
+	public static String[] getMonthData(int month, int year) {
+		String non_leap[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
+				"17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28" };
+
+		String leap[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
+				"18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29" };
+
+		String month_30[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
+				"17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" };
+
+		String month_31[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
+				"17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
+
+		if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
 			return month_31;
-		}
-		else if(month==4||month==6||month==9||month==11)
-		{
+		} else if (month == 4 || month == 6 || month == 9 || month == 11) {
 			return month_30;
-		}
-		else if(month==2 && isLeafYear(year))
-		{
+		} else if (month == 2 && isLeafYear(year)) {
 			return leap;
-		}
-		else
-		{
+		} else {
 			return non_leap;
 		}
-	
+
 	}
-	
-	/*********************Balanced_Parentheses**********************/
-	public static boolean isMatchingPair(char char1, char char2)
-	{
-		if(char1=='(' && char2==')')
+
+	/********************* Balanced_Parentheses **********************/
+	public static boolean isMatchingPair(char char1, char char2) {
+		if (char1 == '(' && char2 == ')')
 			return true;
-		else if(char1=='{' && char2=='}')
+		else if (char1 == '{' && char2 == '}')
 			return true;
-		else if(char1=='[' && char2==']')
+		else if (char1 == '[' && char2 == ']')
 			return true;
 		else
 			return false;
 	}
-	
-	public static boolean isParenthesesBalanced(char expression[])
-	{
-		Stack stk=new Stack();
-		for(int i=0;i<expression.length;i++)
-		{
-			if(expression[i]=='{'||expression[i]=='['||expression[i]=='(')
-			{
+
+	public static boolean isParenthesesBalanced(char expression[]) {
+		Stack stk = new Stack();
+		for (int i = 0; i < expression.length; i++) {
+			if (expression[i] == '{' || expression[i] == '[' || expression[i] == '(') {
 				stk.push(expression[i]);
 			}
-			if(expression[i]=='}'||expression[i]==']'||expression[i]==')')
-			{
-				if(stk.isEmpty())
-				{
+			if (expression[i] == '}' || expression[i] == ']' || expression[i] == ')') {
+				if (stk.isEmpty()) {
 					return false;
-				}
-				else if(!isMatchingPair(stk.pop(), expression[i]))
-				{
+				} else if (!isMatchingPair(stk.pop(), expression[i])) {
 					return false;
 				}
 			}
@@ -1015,136 +1012,123 @@ public class Utility {
 		return true;
 	}
 
-	/******************Prime_And_Anagram_Array********************/
-	
-	public static int[] primeNumberArray(int number)
-	{
-		int arr[]=new int[100];
-		int i=0,k=0;
-		for (i = 2; i <number; i++) {
+	/****************** Prime_And_Anagram_Array ********************/
+
+	public static int[] primeNumberArray(int number) {
+		int arr[] = new int[1000];
+		int i = 0, k = 0;
+		for (i = 2; i < number; i++) {
 			int counter = 0;
-			for (int j = i; j>=1; j--) {
+			for (int j = i; j >= 1; j--) {
 				if (i % j == 0) {
 					counter++;
 				}
 			}
-			if(counter==2)
-			{
-				arr[k]=i;
+			if (counter == 2) {
+				arr[k] = i;
 				k++;
 			}
 		}
 		return arr;
 	}
-	public static int[] anagramArray(int arr1[])
-	{
-		int count=0;
-		int arr2[]=new int[arr1.length];
-		for(int i=0;i<arr1.length;i++)
-		{
-			for(int j=i+1;j<arr1.length;j++)
-			{
-			if(Utility.anagram(arr1[i],arr1[j])==true)
-			{
-				arr2[count]=arr1[i];
-				count++;
-				arr2[count]=arr1[j];
-				count++;
-			}
+
+	public static int[] anagramArray(int arr1[]) {
+		int count = 0;
+		int arr2[] = new int[arr1.length];
+		for (int i = 0; i < arr1.length; i++) {
+			for (int j = i + 1; j < arr1.length; j++) {
+				if (Utility.anagram(arr1[i], arr1[j]) == true) {
+					arr2[count] = arr1[i];
+					count++;
+					arr2[count] = arr1[j];
+					count++;
+				}
 			}
 		}
 
 		return arr2;
 	}
-	
-	public static int[] compareTo(int arr[], int arr2[])
-	{
-		int arr3[]=new int[arr.length];
-		
-		int count=0;
-		for(int i=0;i<arr.length;i++)
-		{
-			int flag=1;
-			for(int j=0;j<arr2.length;j++)
-			{
-				if(arr[i]==arr2[j])
-				{
-					flag=0;
+
+	public static int[] compareTo(int arr[], int arr2[]) {
+		int arr3[] = new int[arr.length];
+
+		int count = 0;
+		for (int i = 0; i < arr.length; i++) {
+			int flag = 1;
+			for (int j = 0; j < arr2.length; j++) {
+				if (arr[i] == arr2[j]) {
+					flag = 0;
 					break;
-				}
-				else
-					flag=1;
-				
+				} else
+					flag = 1;
+
 			}
-			if(flag==1)
-			{
-				arr3[count]=arr[i];
+			if (flag == 1) {
+				arr3[count] = arr[i];
 				count++;
 			}
 		}
 		return arr3;
-		
+
 	}
-	
-	/**************Binary_Search_Tree*************************/
-	//BST.java
-	//BinarySearchTree.java
-	
-	/**************Banking_Cash_Counter******************/
-	
-	static int bank_amount=5000;
+
+	/************** Binary_Search_Tree *************************/
+	// BST.java
+	// BinarySearchTree.java
+
+	/************** Banking_Cash_Counter ******************/
+
+	static int bank_amount = 5000;
 	static int check;
 	static int deposit;
 	static int withdraw;
-	public static void enqueue(int users)
-	{
-		for(int i=1;i<=users;i++)
-		{
+
+	public static void enqueue(int users) {
+		for (int i = 1; i <= users; i++) {
 			transaction();
 		}
 	}
-	public static void transaction()
-	{
+
+	public static void transaction() {
 		System.out.println("Enter your choice:\n1.Deposit\n2.Withdraw");
-		int choice=Utility.integerInput();
-		switch(choice)
-		{
+		int choice = Utility.integerInput();
+		switch (choice) {
 		case 1:
 			System.out.println("Enter amount to deposit: ");
-			int amount=Utility.integerInput(); 
-			check=1;
-			dequeue(amount,check);
+			int amount = Utility.integerInput();
+			check = 1;
+			dequeue(amount, check);
 			break;
 		case 2:
 			System.out.println("Enter amount to withdraw: ");
-			amount=Utility.integerInput();
-			check=0;
-			dequeue(amount,check);
+			amount = Utility.integerInput();
+			check = 0;
+			dequeue(amount, check);
 			break;
-		default: 
+		default:
 			System.out.println("Enter Proper Choice!!");
 			Utility.transaction();
 		}
 	}
 
 	public static void dequeue(int amount, int check) {
-		if(check==1)
-		{
-			bank_amount=bank_amount+amount;
+		if (check == 1) {
+			bank_amount = bank_amount + amount;
 			System.out.println("Amount Deposited Successfully!!");
-		}
-		else if(amount<bank_amount)
-		{
-			bank_amount=bank_amount-amount;
+		} else if (amount < bank_amount) {
+			bank_amount = bank_amount - amount;
 			System.out.println("Amount withdraw successfully!!");
-		}
-		else
-		{
+		} else {
 			System.out.println("Not enough bank amount");
 		}
-		
+
 	}
-	
-	
-	/***************************************************************/
+
+	/********************* Stack_Using_Linked_List ******************/
+	// stack using linked list.java
+	// stack1.java
+
+	/********************* Queue_Using_Linked_List *****************/
+	// queue using linked list.java
+	// queue1.java
 }

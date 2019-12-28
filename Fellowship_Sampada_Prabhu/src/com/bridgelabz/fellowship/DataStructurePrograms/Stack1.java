@@ -14,24 +14,52 @@ public class Stack1 {
 	}
 	public static void push(int data)
 	{
-		Node n=new Node(data);
-		if(top==null)
-			top=n;
+		Node temp=new Node(data);
+		if(temp==null)
+			System.out.println("overflow!!");
 		else
 		{
-			Node temp=n;
-			while(temp.next!=null)
-			{
-				temp=temp.next;
-			}
-			temp.next=n;
+			temp.data=data;
+			temp.next=top;
+			top=temp;
 		}
 	}
 	public static void pop()
 	{
-		Node temp=top;
-		Node prev=temp;
-		int data=(Integer) null;
-		
+		if(top==null)
+		{
+			System.out.println("Stack is underflow!!");
+			return;
+		}
+		else
+		{
+			top=top.next;
+		}
 	}
+	public static boolean isEmpty()
+	{
+		if(top==null)
+		{
+			return true;
+		}
+		return false;
+	}
+	public static void display()
+	{
+		Node temp;
+		if(top==null)
+		{
+			System.out.println("Stack is underflow!!");
+		}
+		else
+		{
+			temp=top;
+			while(temp!=null)
+			{
+				System.out.print(temp.data+"-->");
+				temp=temp.next;
+			}	
+		}
+	}
+	
 }

@@ -16,6 +16,7 @@ public class OrderedList {
 		Utility.findAndDelete(search);
 		System.out.println();
 		System.out.println("New list is: ");
+		Utility.readWriteFile();
 		
 	}
 
