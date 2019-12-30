@@ -5,23 +5,23 @@ import com.bridgelabz.fellowship.utility.Utility;
 public class PalindromeChecker {
 
 	public static void main(String[] args) {
-		Queue queue=new Queue();
+		
 		System.out.println("Enter the String: ");
 		String string=Utility.stringInput();
 		int mid=string.length()/2;
 		for(int i=string.length()-1;i>=0;i--)
 		{
-			queue.insertDequeue(string.charAt(i));
+			Queue.insertDequeue(string.charAt(i));
 		}
-		queue.printDequeue();
+		Queue.printDequeue();
 		char char1,char2;
 		int i=0;
 		int flag=0;
 		while(i<mid)
 		{
-			char1=queue.dequeueFront();
+			char1=Queue.dequeueFront();
 			System.out.print(char1);
-			char2=queue.dequeueRear();
+			char2=Queue.dequeueRear();
 			System.out.print(char2);
 			System.out.println();
 			if((char1==char2)!=true)

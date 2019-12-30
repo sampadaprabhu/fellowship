@@ -13,9 +13,9 @@ public class OrderedList {
 		
 		System.out.println("Enter the word from file that you have to search:");
 		int search=Utility.integerInput();
+		System.out.println("New list is: ");
 		Utility.findAndDelete(search);
 		System.out.println();
-		System.out.println("New list is: ");
 		Utility.readWriteFile();
 		
 	}

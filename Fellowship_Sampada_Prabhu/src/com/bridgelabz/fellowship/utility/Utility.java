@@ -4,11 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import com.bridgelabz.fellowship.DataStructurePrograms.Hashing;
 import com.bridgelabz.fellowship.DataStructurePrograms.Stack;
 
 /**
@@ -854,7 +857,7 @@ public class Utility {
 	}
 
 	public static int[] fileReaderOL() throws Exception {
-		File file = new File(("/home/admin1/Desktop/UnorderedList.txt"));
+		File file = new File(("/home/admin1/Desktop/UnOrderList.txt"));
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		String lines[] = br.readLine().split(" ");
@@ -863,9 +866,8 @@ public class Utility {
 			arr[i] = Integer.parseInt(lines[i]);
 		}
 		arr = Utility.bSort(arr);
-		// System.out.println(str[j-1]);
+
 		return arr;
-		// System.out.println(str);
 	}
 
 	public static void sort(Node head) {
@@ -922,9 +924,10 @@ public class Utility {
 			deleteAtPosition(temp);
 			System.out.println("number found...So we have to delete it!!");
 
-		} else {
+		} else if (currentNode.data1 != search) {
 			System.out.println("Number not found!!");
 			Utility.add(search);
+		} else {
 		}
 		Utility.printListInt();
 	}
@@ -1131,4 +1134,73 @@ public class Utility {
 	/********************* Queue_Using_Linked_List *****************/
 	// queue using linked list.java
 	// queue1.java
+
+	/************** Hashing_Function_To_Search_Number **************/
+	public static void getValue(int key, int data) {
+		LinkedListUtility<Integer> list = (LinkedListUtility<Integer>) Hashing.ob[key];
+		if (list.search(data)) {
+			list.removeAtIndex((int) list.index(data));
+		} else {
+			list.add(data);
+		}
+		list.display();
+	}
+
+	public static int[] inputFromFile() throws IOException {
+		File file = new File(
+				"/home/admin1/Desktop/FellowshipProgramsJavaAishwarya/Fellowship_Sampada_Prabhu/src/com/bridgelabz/fellowship/DataStructurePrograms/Hash");
+		FileReader fr = new FileReader(file);
+		BufferedReader br = new BufferedReader(fr);
+		String lines[] = br.readLine().split(",");
+		int arr[] = new int[lines.length];
+		for (int i = 0; i < lines.length; i++) {
+			arr[i] = Integer.parseInt(lines[i]);
+		}
+		return arr;
+
+	}
+
+	public static void writeInFileHash() throws FileNotFoundException {
+		Node current = head;
+		PrintWriter pw = new PrintWriter(
+				"/home/admin1/Desktop/FellowshipProgramsJavaAishwarya/Fellowship_Sampada_Prabhu/src/com/bridgelabz/fellowship/DataStructurePrograms/Hash");
+		while (current.next != null) {
+			pw.print(current.data1);
+			pw.print(" ");
+			current = current.next;
+		}
+		pw.print(current.data1);
+		pw.flush();
+	}
+
+	/******************** Binary_Search_Tree *********************/
+
+	public static double factorial(double i) {
+		double fact = 1;
+		while (i > 0) {
+			fact = fact - i;
+			i--;
+		}
+		return fact;
+	}
+
+	public static BigInteger countBinarySearchTree(double d) {
+		double a = 2 * d;
+		double b = d + 1;
+		BigInteger x = calculateNode(a);
+		BigInteger y = calculateNode(b);
+		BigInteger c = calculateNode(d);
+
+		return x.divide(y.multiply(c));
+	}
+
+	public static BigInteger calculateNode(double a) {
+
+		BigInteger factorial = BigInteger.ONE;
+		for (double i = a; i > 0; i--) {
+			factorial = factorial.multiply(BigInteger.valueOf((long) i));
+		}
+		return factorial;
+	}
+
 }
