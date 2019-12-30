@@ -10,6 +10,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.bridgelabz.fellowship.DataStructurePrograms.Hashing;
 import com.bridgelabz.fellowship.DataStructurePrograms.Stack;
@@ -714,6 +716,39 @@ public class Utility {
 		ch[i] = ch[j];
 		ch[j] = temp;
 		return String.valueOf(ch);
+	}
+	
+	/*********************Regex.java *********************/
+	
+	public static void regex(String name,String fullname,String contact,String date, String msg)
+	{
+		String reg_name="<<name>>";
+		String reg_fullname="<<full name>>";
+		String reg_contact="xxxxxxxxxx";
+		String reg_date="xx/xx/xxxx";
+		Pattern p;
+		Matcher m;
+		
+		p=Pattern.compile(reg_name);
+		m=p.matcher(msg);
+		msg=m.replaceAll(name);
+		
+		p=Pattern.compile(reg_fullname);
+		m=p.matcher(msg);
+		msg=m.replaceAll(fullname);
+		
+		p=Pattern.compile(reg_contact);
+		m=p.matcher(msg);
+		msg=m.replaceAll(contact);
+		
+		p=Pattern.compile(reg_date);
+		m=p.matcher(msg);
+		msg=m.replaceAll(date);
+		
+		System.out.println("After replacing:  ");
+		System.out.println();
+		System.out.println(msg);
+		
 	}
 
 	/************************* Unordered_List ***************************/
