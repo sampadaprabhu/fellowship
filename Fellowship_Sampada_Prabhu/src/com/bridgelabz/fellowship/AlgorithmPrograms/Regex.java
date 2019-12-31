@@ -5,7 +5,7 @@ import com.bridgelabz.fellowship.utility.Utility;
 public class Regex {
 
 	public static void main(String[] args) {
-		String string="Hello <<name>>,We have your full name as<<full name>> in our system.\n"
+		String string="Hello <<name>>,We have your full name as <<full name>> in our system.\n"
 				+"Your contact no. is 91-xxxxxxxxxx \n"
 				+"Please let us know in case of clarification Thank you Bridgelabz xx/xx/xxxx.";
 		

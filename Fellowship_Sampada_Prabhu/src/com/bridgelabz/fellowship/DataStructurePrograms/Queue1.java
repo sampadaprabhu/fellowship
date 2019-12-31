@@ -26,7 +26,7 @@ public static void enqueue(int data)
 	else
 	{
 		temp=head;
-		while(temp!=null)
+		while(temp.next!=null)
 		{
 			temp=temp.next;
 		}
@@ -133,5 +133,4 @@ public static boolean isEmpty()
 	return false;
 	
 }
-
 }

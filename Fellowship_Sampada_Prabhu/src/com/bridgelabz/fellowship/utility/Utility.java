@@ -297,17 +297,54 @@ public class Utility {
 
 	public static void couponNumber() {
 		char ch[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
-		int max = 100;
-		int random = (int) (Math.random() * max);
+		System.out.println(ch.length);
+		int max = 1234;
+		int arr[]=new int[10];
+		int arr1[]=new int[arr.length];
+		int flag=0;
+		//System.out.println(random);
 		StringBuffer sb = new StringBuffer();
-		while (random > 0) {
-			sb.append(ch[random % ch.length]);
-			random = random / ch.length;
+		for(int i=0;i<5;i++)
+		{
+			 arr[i] = (int) (Math.random() * max);
+			 System.out.println(arr[i]);
 		}
+		int i=0,j=0;
+		while(j<arr.length-1)
+		{
+		arr1[j]=arr[i];
+		j++;
+		}
+		System.out.println(arr1[j]);
+		for(i=0;i<arr1.length;i++)
+		{
+		//while (arr[i] > 0) {
+			sb.append(ch[arr1[i] % ch.length]);
+			arr1[i] = arr1[i] / ch.length;
+			
+			for( i=0;i<arr1.length-1;i++) {
+				if(arr1[i]==arr1[i+1])
+				{
+					flag++;
+					break;
+				}
+				else
+					flag=0;
+			}
+		}
+		if(flag==0)
+		{
 		String couponCode = sb.toString();
 		System.out.println("Coupon Code is: " + couponCode);
-
-	}
+		}
+		}
+		
+		/*if(flag==0)
+		{
+			
+		}*/
+		
+	//}
 
 	// Stopwatch program Method
 	public static double startTime() {
@@ -1183,7 +1220,7 @@ public class Utility {
 
 	public static int[] inputFromFile() throws IOException {
 		File file = new File(
-				"/home/admin1/Desktop/FellowshipProgramsJavaAishwarya/Fellowship_Sampada_Prabhu/src/com/bridgelabz/fellowship/DataStructurePrograms/Hash");
+				"/home/admin1/Desktop/UnOrderList.txt");
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		String lines[] = br.readLine().split(",");
@@ -1198,7 +1235,7 @@ public class Utility {
 	public static void writeInFileHash() throws FileNotFoundException {
 		Node current = head;
 		PrintWriter pw = new PrintWriter(
-				"/home/admin1/Desktop/FellowshipProgramsJavaAishwarya/Fellowship_Sampada_Prabhu/src/com/bridgelabz/fellowship/DataStructurePrograms/Hash");
+				"/home/admin1/Desktop/UnOrderList.txt");
 		while (current.next != null) {
 			pw.print(current.data1);
 			pw.print(" ");
